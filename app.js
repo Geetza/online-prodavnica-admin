@@ -16,6 +16,7 @@ let artikli = [televizor, telefon, frizider];
 
 function DodajRed() {
   let table = document.querySelector("#artikli-body");
+  table.innerHTML = "";
 
   for (let i = 0; i < artikli.length; i++) {
     let tr = document.createElement("tr");
@@ -26,7 +27,7 @@ function DodajRed() {
 
     id.textContent = artikli[i].id;
     naziv.textContent = artikli[i].naziv;
-    cena.textContent = artikli[i].cena;
+    cena.textContent = artikli[i].cena + "$";
 
     tr.appendChild(id);
     tr.appendChild(naziv);
@@ -39,8 +40,6 @@ function DodajRed() {
     table.appendChild(tr);
   }
 }
-
-DodajRed();
 
 function PrikaziDetalje(artikal) {
   let p = document.createElement("p");
@@ -67,3 +66,28 @@ function PrikaziDetalje(artikal) {
 
   detalji.appendChild(p);
 }
+
+function ObradiFormu() {
+  let submitBtn = document.querySelector("#submitBtn");
+
+  submitBtn.addEventListener("click", function () {
+    const form = document.querySelector("#forma");
+    const formData = new FormData(forma);
+
+    const naziv = formData.get("naziv");
+    const cena = formData.get("cena");
+    const opis = formData.get("opis");
+
+    const noviArtikal = new Artikal(artikli.length + 1, naziv, cena, opis);
+    artikli.push(noviArtikal);
+
+    DodajRed();
+  });
+}
+
+function Inicijalizuj() {
+  DodajRed();
+  ObradiFormu();
+}
+
+document.addEventListener("DOMContentLoaded", Inicijalizuj());
