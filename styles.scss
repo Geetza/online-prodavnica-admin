@@ -1,0 +1,25 @@
+$border-style: 1px solid black;
+
+body {
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 30px;
+}
+
+table {
+  border: $border-style;
+
+  th,
+  td {
+    border: $border-style;
+  }
+}
+
+#submitBtn {
+  cursor: pointer;
+}
