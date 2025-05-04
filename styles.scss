@@ -3,20 +3,29 @@ $border-style: 1px solid black;
 body {
   border: 1px solid black;
   padding: 20px;
-}
 
-.container {
-  display: flex;
-  justify-content: flex-start;
-  gap: 30px;
-}
+  .container {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
 
-table {
-  border: $border-style;
+    table {
+      border: $border-style;
 
-  th,
-  td {
-    border: $border-style;
+      th,
+      td {
+        border: $border-style;
+      }
+
+      td:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .detalji {
+    width: 200px;
   }
 }
 

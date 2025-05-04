@@ -1,3 +1,4 @@
+"use strict";
 class Artikal {
   constructor(id, naziv, cena, opis) {
     this.id = id;
@@ -31,8 +32,38 @@ function DodajRed() {
     tr.appendChild(naziv);
     tr.appendChild(cena);
 
+    tr.addEventListener("click", function () {
+      PrikaziDetalje(artikli[i]);
+    });
+
     table.appendChild(tr);
   }
 }
 
 DodajRed();
+
+function PrikaziDetalje(artikal) {
+  let p = document.createElement("p");
+
+  p.style.border = "1px solid black";
+  p.style.padding = "10px";
+
+  p.innerHTML =
+    "Naziv: " +
+    artikal.naziv +
+    "<br>" +
+    "Cena: " +
+    artikal.cena +
+    "$" +
+    "<br>" +
+    "Opis: " +
+    artikal.opis;
+
+  let detalji = document.querySelector(".detalji");
+
+  if (detalji.firstChild) {
+    detalji.firstChild.remove();
+  }
+
+  detalji.appendChild(p);
+}

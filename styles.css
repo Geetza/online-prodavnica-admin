@@ -2,19 +2,24 @@ body {
   border: 1px solid black;
   padding: 20px;
 }
-
-.container {
+body .container {
   display: flex;
   justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 30px;
 }
-
-table {
+body .container table {
   border: 1px solid black;
 }
-table th,
-table td {
+body .container table th,
+body .container table td {
   border: 1px solid black;
+}
+body .container table td:hover {
+  cursor: pointer;
+}
+body .detalji {
+  width: 200px;
 }
 
 #submitBtn {
