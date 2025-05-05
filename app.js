@@ -14,6 +14,15 @@ const frizider = new Artikal(3, "Gorenje", 700, "Samootapajuci");
 
 let artikli = [televizor, telefon, frizider];
 
+const sacuvaniArtikli = localStorage.getItem("artikli");
+if (sacuvaniArtikli) {
+  const parsedArtikli = JSON.parse(sacuvaniArtikli);
+  artikli = parsedArtikli.map(
+    (artikal) =>
+      new Artikal(artikal.id, artikal.naziv, artikal.cena, artikal.opis)
+  );
+}
+
 function DodajRed() {
   let table = document.querySelector("#artikli-body");
   table.innerHTML = "";
@@ -39,6 +48,8 @@ function DodajRed() {
 
     table.appendChild(tr);
   }
+
+  localStorage.setItem("artikli", JSON.stringify(artikli));
 }
 
 function PrikaziDetalje(artikal) {
@@ -75,7 +86,7 @@ function ObradiFormu() {
     const formData = new FormData(forma);
 
     const naziv = formData.get("naziv");
-    const cena = formData.get("cena");
+    const cena = parseFloat(formData.get("cena"));
     const opis = formData.get("opis");
 
     const noviArtikal = new Artikal(artikli.length + 1, naziv, cena, opis);
@@ -90,4 +101,4 @@ function Inicijalizuj() {
   ObradiFormu();
 }
 
-document.addEventListener("DOMContentLoaded", Inicijalizuj());
+document.addEventListener("DOMContentLoaded", Inicijalizuj);
